@@ -4,32 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deadpool hangman</title>
-    <link rel="stylesheet" href="dh-styles.css" />
+    <link rel="stylesheet" href="./styles/dh-styles.css" /> <!-- stylesheet -->
+    <link href="https://fonts.cdnfonts.com/css/rogue-hero" rel="stylesheet"> <!-- font -->
 </head>
 <body>
-    <div id="instructionsToast">
-        <p id="closeBTN">X</p>
-        <p>The instructions would be here</p>
+    <div id="toastContainer">
+        <h6 id="closeBTN">X</h6>
+        <p id="instructionsText">The instructions would be here</p>
     </div>
+    
     <div id = "StartingScreen">
         <div id="image">
             <img src="./img/Dogpool.png" alt="Dogpool"/>
         </div>
         <div id="textAndBTNs">
             <div id="gameTitle">
-                <h1>deadpool hangman</h1>
+                <h1>Deadpool<br>Hangman</h1>
             </div>
-            <div id="star-buttons">
+            <div id="start-buttons">
                 <button id="instructionsBTN">Instructions</button>
-                <button id="starGametBTN">Start Game</button>
+                <button id="startGametBTN">Start Game</button>
             </div>
         </div>
     </div>
     <div id = "mainGame">
+        <div id="leftside"> 
+            <img src="" alt="Hangman">
+            <div id="lives"></div>
+            <div id="mistriousWord"></div>
+        </div>
+        <div id="playinArea"></div>
 
     </div>
     <div id = "endingScreen"></div>
 </body>
-<script type="text/javascript" src="dh-general.js"></script>
-<script type="text/javascript" src="dh-clases.js"></script>
+<script type="text/javascript" src="./JS/dh-clases.js"></script>
+<script type="text/javascript" src="./JS/dh-general.js"></script>
 </html>
