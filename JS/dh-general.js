@@ -33,3 +33,36 @@ startBTN.addEventListener("click", () => {
 const retryBTN = document.querySelector("#box button");
 retryBTN.addEventListener("click", () => game.getNewWord ())
 
+// Moving the player
+
+document.addEventListener("keydown", (event) => {
+    if (event.code === "KeyA" || event.code === "ArrowLeft"){
+        console.log("go left");
+        game.player.directionX = -1;
+    }
+    if (event.code === "KeyD" || event.code === "ArrowRight"){
+        console.log("go right");
+        game.player.directionX = 1
+    }
+    if (event.code === "KeyW" || event.code === "ArrowUp"){
+        console.log("go up");
+        game.player.directionY = -1;
+    }
+    if (event.code === "KeyS" || event.code === "ArrowDown"){
+        console.log("go down");
+        game.player.directionY = 1;
+    }
+})
+
+// Stoping the player from moving
+
+document.addEventListener("keyup", (event) => {
+    if (event.code === "KeyA" || event.code === "ArrowLeft" || event.code === "KeyD" || event.code === "ArrowRight"){
+        game.player.directionX = 0;
+    }
+   
+    if (event.code === "KeyW" || event.code === "ArrowUp" || event.code === "KeyS" || event.code === "ArrowDown"){
+        game.player.directionY = 0;
+    }
+    
+})

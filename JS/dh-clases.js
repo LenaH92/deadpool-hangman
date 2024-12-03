@@ -3,6 +3,7 @@ class Game {
         this.startScreen = document.getElementById("StartingScreen");
         this.mainScreen = document.getElementById("mainGame");
         this.playinArea = document.getElementById("playinArea");
+        this.playinAreaWidth = "800px"
         this.width = "100vw";
         this.height = "100vh";
         this.life = 0;
@@ -10,6 +11,7 @@ class Game {
         this.words = ["hello", "deadpool", "dogpool", "wade", "dog", "wolverine", "katana", "mutant", "superpower"];
         this.image = "";
         this.player;
+        this.currentFrame = 0; //to keep track of the frames
     }
 
     startingGame(){
@@ -17,6 +19,7 @@ class Game {
         this.mainScreen.style.display = "flex";
 
         this.mainScreen.style.width = this.width;
+        //this.playinArea.style.width = this.playinAreaWidth;
         this.mainScreen.style.height = this.height;
         console.log("starting new game")
 
@@ -57,8 +60,8 @@ class Game {
             letterP.innerText = letter;
             letterP.style.visibility = "hidden"; //how can I hide the letter and show the border?
             letterP.classList.add(`${letter}`); //added a class of the type of letter it is so it's easier to  link  with the playing area
-
-            letterDiv.style.borderBottom = "solid 2px black";
+            letterP.style.paddingBottom = "3px"
+            letterDiv.style.borderBottom = "solid 3px black";
 
             newWordContainer.appendChild(letterDiv);
             letterDiv.appendChild(letterP);
@@ -67,18 +70,24 @@ class Game {
 
     gameLoop() {
         setInterval(() => {
+            this.currentFrame += 1;
+
+            this.player.move();
 
         }, 1000 /60) //interval set to 60fps
     }
 }
 
 class Player {
+
     constructor(playinArea){
         this.playinArea = playinArea;
         this.width = 60;
         this.height= 60;
         this.positionX = playinArea.offsetWidth - this.width - 30;
         this.positionY = playinArea.clientHeight - this.height - 30;
+        console.log(playinArea)
+        this.leftSide= document.getElementById("leftside");
 
         this.element = document.createElement("img"); //getting the img
         this.element.src ="./img/doggoIcon.png";
@@ -93,6 +102,43 @@ class Player {
         this.element.style.top = `${this.positionY}px`;
         
         this.playinArea.appendChild(this.element);
+
+        // moving
+        this.directionX = 0
+        this.directionY = 0
+        this.speed = 5
+    }
+
+    updatePosition(){
+
+        //horizontally
+        this.positionX += this.speed * this.directionX;
+
+
+        if (this.positionX < this.leftSide.offsetWidth) {
+              this.positionX = this.leftSide.offsetWidth; // left
+        }
+        
+        if (this.positionX > this.leftSide.offsetWidth + this.playinArea.offsetWidth - this.width) {
+              this.positionX = this.leftSide.offsetWidth + this.playinArea.offsetWidth - this.width; // right
+        }
+
+        //vertically
+        this.positionY += this.speed * this.directionY;
+
+        if (this.positionY < 0) {
+            this.positionY = 0; // superior
+        }
+
+        if (this.positionY > this.playinArea.offsetHeight - this.height) {
+            this.positionY = this.playinArea.offsetHeight - this.height; // inferior
+        }
+    }
+
+    move(){
+        this.updatePosition();
+        this.element.style.left = `${this.positionX}px`;
+        this.element.style.top = `${this.positionY}px`;
     }
 
 }
