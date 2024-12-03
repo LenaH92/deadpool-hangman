@@ -107,6 +107,7 @@
 #mainGame{
     display: none;
     background: radial-gradient(circle, #f3dedc, #ff6759);
+    width: 1000px;
 }
 
 #misteriousWord {
@@ -120,6 +121,25 @@
     padding-left: 30px;
 }
 
+#box {
+    font-size: 0.7rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#playinArea{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: space-around;
+    position: relative
+}
+
+.letterButton {
+    border: solid 2px #13171b;
+    padding: 3px 4px 3px 4px;
+    font-size: 2rem;
+}
 /* just for now */
 #leftside{
     border: solid red;

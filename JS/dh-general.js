@@ -25,5 +25,11 @@ const startBTN = document.getElementById("startGametBTN");
 
 startBTN.addEventListener("click", () => {
     console.log("changing screens");
-    startGame()}); //function in methods.js
+    startGame()
+}); //function in methods.js
+
+// Start over a word
+
+const retryBTN = document.querySelector("#box button");
+retryBTN.addEventListener("click", () => game.getNewWord ())
 

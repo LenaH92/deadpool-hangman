@@ -2,13 +2,14 @@ class Game {
     constructor(){
         this.startScreen = document.getElementById("StartingScreen");
         this.mainScreen = document.getElementById("mainGame");
+        this.playinArea = document.getElementById("playinArea");
         this.width = "100vw";
         this.height = "100vh";
         this.life = 0;
         this.counter = 0;
         this.words = ["hello", "deadpool", "dogpool", "wade", "dog", "wolverine", "katana", "mutant", "superpower"];
         this.image = "";
-        //this.image.style.max-width = "200px"
+        this.player;
     }
 
     startingGame(){
@@ -18,6 +19,8 @@ class Game {
         this.mainScreen.style.width = this.width;
         this.mainScreen.style.height = this.height;
         console.log("starting new game")
+
+        this.player = new Player(this.playinArea);
 
         this.life = 6; //restarting the life counter
         let lifeText = document.getElementById("lifes");
@@ -33,15 +36,21 @@ class Game {
 
         this.getNewWord(); // strting a new word to find
 
+        
+        this.gameLoop(); // calling the method so the game actually can move
+
     }
 
     getNewWord (){
         const newWordIndex = Math.floor(Math.random() * this.words.length); //get the rendom index of the Array
         let newWord = this.words[newWordIndex].toUpperCase(); //this is selecting the word of the array
 
+        const newWordContainer = document.getElementById("misteriousWord");
+        newWordContainer.innerText = ""; //emptying the container jut in case
+
         //make the divs and Assigning them the letters
         for (const letter of newWord) { //running through the letters of the word
-            const newWordContainer = document.getElementById("misteriousWord");
+            
             let letterDiv = document.createElement("div"); //creating a div so the border shows when hiding the letter
             let letterP = document.createElement ("p");
             
@@ -55,4 +64,35 @@ class Game {
             letterDiv.appendChild(letterP);
           }
     }
+
+    gameLoop() {
+        setInterval(() => {
+
+        }, 1000 /60) //interval set to 60fps
+    }
+}
+
+class Player {
+    constructor(playinArea){
+        this.playinArea = playinArea;
+        this.width = 60;
+        this.height= 60;
+        this.positionX = playinArea.offsetWidth - this.width - 30;
+        this.positionY = playinArea.clientHeight - this.height - 30;
+
+        this.element = document.createElement("img"); //getting the img
+        this.element.src ="./img/doggoIcon.png";
+
+        // positioning 
+        this.element.alt ="Player icon";
+        this.element.style.position = "absolute";
+        this.element.style.width = `${this.width}px`;
+        this.element.style.height = `${this.height}px`;
+        
+        this.element.style.left = `${this.positionX}px`;
+        this.element.style.top = `${this.positionY}px`;
+        
+        this.playinArea.appendChild(this.element);
+    }
+
 }
