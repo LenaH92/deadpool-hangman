@@ -129,10 +129,31 @@
 .letterButton {
     border: solid 2px #13171b;
     padding: 3px 4px 3px 4px;
+    font-size: 2.5rem;
+    background-color: whitesmoke;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.letterButton.selected {
+    border: solid 2px #88a2bc;
+    padding: 3px 4px 3px 4px;
     font-size: 3rem;
+    background-color: rgb(180, 180, 180);
+    color: #88a2bc;
 }
 
 
+#playinArea{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 85px;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px 40px 20px 40px;
+}
 
 /* just for now */
 #leftside{
@@ -153,12 +174,4 @@
 #misteriousWord{
     border: solid olivedrab;
 }
-#playinArea{
-    border: solid burlywood;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 90px;
-    align-items: center;
-    justify-content: space-around;
-    padding: 0 20px 0 20px;
-}
+/* quitar tambien el de playing area */

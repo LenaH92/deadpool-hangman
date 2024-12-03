@@ -8,7 +8,7 @@ class Game {
         this.height = "100vh";
         this.life = 0;
         this.counter = 0;
-        this.words = ["hello", "deadpool", "dogpool", "wade", "dog", "wolverine", "katana", "mutant", "superpower"];
+        this.words = ["ryan", "reynolds", "marvel", "movie", "vanessa", "action", "mask", "mercenary", "hero", "deadpool", "dogpool", "wade", "dog", "wolverine", "katana", "mutant", "superpower"];
         this.image = "";
         this.player;
         this.currentFrame = 0; //to keep track of the frames
@@ -83,7 +83,7 @@ class Player {
     constructor(playinArea){
         this.playinArea = playinArea;
         this.width = 60;
-        this.height= 60;
+        this.height= 57;
         this.positionX = playinArea.offsetWidth - this.width - 30;
         this.positionY = playinArea.clientHeight - this.height - 30;
         console.log(playinArea)
@@ -140,5 +140,9 @@ class Player {
         this.element.style.left = `${this.positionX}px`;
         this.element.style.top = `${this.positionY}px`;
     }
+
+}
+
+class Obstacle{
 
 }
