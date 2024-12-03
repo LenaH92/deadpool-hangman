@@ -12,13 +12,11 @@ function closeToast() {
     toast.classList.remove("show")
 };
 
-// Changing to the main screen
+// Changing to the main screen 
 
 function startGame() {
-    const startScreen = document.getElementById("StartingScreen");
-    startScreen.style.display = "none";
-
-    const mainScreen = document.getElementById("mainGame");
-    mainScreen.style.display = "flex";
+    game = new Game(); //reaches the class in classes.js
+    game.startingGame();
+    console.log("start game?");
 }
 

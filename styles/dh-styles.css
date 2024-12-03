@@ -61,7 +61,7 @@
 #StartingScreen {
     display: flex;
     justify-content: flex-start;
-    background: radial-gradient(circle, #b48f8b, #9b6964);
+    background: radial-gradient(circle, #f3dedc, #9b6964);
 }
 
 #image img{
@@ -105,5 +105,40 @@
 /* Main Game Screen */
 
 #mainGame{
-    display: none
+    display: none;
+    background: radial-gradient(circle, #f3dedc, #ff6759);
+}
+
+#misteriousWord {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 2rem;
+}
+
+#hangmanImg img{
+    max-height: 80vh;
+    padding-left: 30px;
+}
+
+/* just for now */
+#leftside{
+    border: solid red;
+} 
+#leftside img{
+    border: solid blue;
+}
+#counters{
+    border: solid greenyellow;
+}
+#lifes{
+    border: solid purple;
+}
+#counter{
+    border: solid orange;
+}
+#misteriousWord{
+    border: solid olivedrab;
+}
+#playinArea{
+    border: solid burlywood;
 }

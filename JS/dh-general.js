@@ -6,19 +6,24 @@ const instructionsBTN = document.getElementById("instructionsBTN");
 
 instructionsBTN.addEventListener("click", () => {
     console.log("toast called!");
-    showToast();
+    showToast(); //function in methods.js
 })
 
 //Closing toast
 
 const closeToastBTN = document.getElementById("closeBTN");
 
-closeToastBTN.addEventListener("click", () => closeToast());
+closeToastBTN.addEventListener("click", () => closeToast()); //function in methods.js
 
-// Changing to the main screen
+//stating game so it goes to the whole scope
+
+let game;
+
+// Changing to the main screen 
 
 const startBTN = document.getElementById("startGametBTN");
+
 startBTN.addEventListener("click", () => {
     console.log("changing screens");
-    startGame()});
+    startGame()}); //function in methods.js
 
