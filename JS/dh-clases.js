@@ -23,6 +23,7 @@ class Game {
 
         const endImgDiv = document.getElementById("endingPicture");
         endImgDiv.appendChild(this.endingPicture);
+
     }
 
     startingGame(){
@@ -35,12 +36,12 @@ class Game {
         console.log("starting new game")
 
         this.player = new Player(this.playinArea);
+
+        let counterText = document.getElementById("counter");
+        counterText.innerHTML =`counter: ${this.counter}`;
         
         this.getNewWord(); // strting a new word to find
-        this.getLivesImg(); //method to change the img depending on the number of lives
 
-        
-        
         this.gameLoop(); // calling the method so the game actually can move
 
     }
@@ -50,11 +51,20 @@ class Game {
         let newWord = this.words[newWordIndex].toUpperCase(); //this is selecting the word of the array
 
         const newWordContainer = document.getElementById("misteriousWord");
-        newWordContainer.innerText = ""; //emptying the container jut in case
+        newWordContainer.innerText = ""; //emptying the container just in case
 
         this.life = 6; //restarting the life counter
         let lifeText = document.getElementById("lifes");
         lifeText.innerText = `Lifes: ${this.life}`;
+        this.getLivesImg(); //method to change the img depending on the number of lives
+
+        //unselecting the words from playing area
+        const allLetterDivs = document.querySelectorAll(".letterButton"); // Todas las letras
+        allLetterDivs.forEach((currentDiv) => {
+            if (currentDiv.classList.contains("selected")){
+                currentDiv.classList.remove("selected");
+            }
+        })
 
         //make the divs and Assigning them the letters
         for (const letter of newWord) { //running through the letters of the word
@@ -70,7 +80,8 @@ class Game {
 
             newWordContainer.appendChild(letterDiv);
             letterDiv.appendChild(letterP);
-          }
+        }
+        
     }
 
     gameLoop() {
@@ -154,11 +165,10 @@ class Game {
         let foundLetter = false;
 
         wordLetters.forEach((currentLetter) => {
-            console.log(currentLetter);
             if (currentLetter.innerHTML === letter) {
                 currentLetter.style.visibility = "visible";
                 foundLetter = true;
-                console.log("letter found!!");
+                console.log(`letter found!!`);
             } 
         });
 
@@ -170,18 +180,21 @@ class Game {
 
         //checking if all the letter are visible
         const allRevealed = Array.from(wordLetters).every(
-            (currentLetter) => currentLetter.style.visibility === "visible" 
-        ); //this returns a boolean!
+            (currentLetter) => currentLetter.style.visibility === "visible"); //this returns a boolean!
+
+        
     
         if (allRevealed) {
             this.counter += 1;
+            let counterText = document.getElementById("counter");
+            counterText.innerHTML =`counter: ${this.counter}`; //should I keep thishere?
             console.log(`Palabra completada. Contador: ${this.counter}`);
-    
             if (this.counter >= 3) {
                 this.endGame("win");
-            } else {
-                this.newWord();
             }
+            this.player.reposition();
+            this.getNewWord();
+
         }
 
     }
@@ -295,6 +308,12 @@ class Player {
         this.element.style.top = `${this.positionY}px`;
     }
 
-    
+    reposition(){
+        this.positionX = playinArea.offsetWidth - this.width - 30;
+        this.positionY = playinArea.clientHeight - this.height -30;
+
+        this.element.style.left = `${this.positionX}px`;
+        this.element.style.top = `${this.positionY}px`;
+    }
 
 }
