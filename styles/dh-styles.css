@@ -175,3 +175,11 @@
     border: solid olivedrab;
 }
 /* quitar tambien el de playing area */
+
+/* Ending screen */
+#endingScreen {
+    display: none;
+    background: radial-gradient(circle, #f3dedc, #ff6759);
+    justify-content: flex-start;
+    height: 100vh;
+}

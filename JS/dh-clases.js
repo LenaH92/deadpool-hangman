@@ -3,15 +3,26 @@ class Game {
         this.startScreen = document.getElementById("StartingScreen");
         this.mainScreen = document.getElementById("mainGame");
         this.playinArea = document.getElementById("playinArea");
+        this.endingScreen = document.getElementById("endingScreen");
         this.playinAreaWidth = "800px"
         this.width = "100vw";
         this.height = "100vh";
         this.life = 0;
         this.counter = 0;
         this.words = ["ryan", "reynolds", "marvel", "movie", "vanessa", "action", "mask", "mercenary", "hero", "deadpool", "dogpool", "wade", "dog", "wolverine", "katana", "mutant", "superpower"];
-        this.image = "";
+        this.image = document.createElement("img");
         this.player;
         this.currentFrame = 0; //to keep track of the frames
+
+        this.endingPicture = document.createElement("img");
+        this.endingTitle = document.getElementById("endingTitle");
+        this.endingSubtitle = document.getElementById("endingSubtitle");
+
+        const imgDiv = document.getElementById("hangmanImg");
+        imgDiv.appendChild(this.image);
+
+        const endImgDiv = document.getElementById("endingPicture");
+        endImgDiv.appendChild(this.endingPicture);
     }
 
     startingGame(){
@@ -24,16 +35,11 @@ class Game {
         console.log("starting new game")
 
         this.player = new Player(this.playinArea);
-
-        this.life = 6; //restarting the life counter
-        let lifeText = document.getElementById("lifes");
-        lifeText.innerText = `Lifes: ${this.life}`; 
-
-        //const imgDiv = document.getElementById("hangmanImg"); //getting the div where  the img should be nested
         
+        this.getNewWord(); // strting a new word to find
         this.getLivesImg(); //method to change the img depending on the number of lives
 
-        this.getNewWord(); // strting a new word to find
+        
         
         this.gameLoop(); // calling the method so the game actually can move
 
@@ -45,6 +51,10 @@ class Game {
 
         const newWordContainer = document.getElementById("misteriousWord");
         newWordContainer.innerText = ""; //emptying the container jut in case
+
+        this.life = 6; //restarting the life counter
+        let lifeText = document.getElementById("lifes");
+        lifeText.innerText = `Lifes: ${this.life}`;
 
         //make the divs and Assigning them the letters
         for (const letter of newWord) { //running through the letters of the word
@@ -64,7 +74,7 @@ class Game {
     }
 
     gameLoop() {
-        setInterval(() => {
+        this.intervalId =setInterval(() => {
             this.currentFrame += 1;
 
             this.player.move();
@@ -75,50 +85,45 @@ class Game {
 
     getLivesImg() {
 
-        const imgDiv = document.getElementById("hangmanImg"); //getting the div where  the img should be nested
-        console.log("getting the image")
-        const livesImg = document.createElement("img"); //nesting the img and
 
         switch (this.life) {
             case 6:
-                livesImg.src = "./img/life-stages/6-lifes.png";
-                livesImg.alt = "Hanging Deadpool with 6 lives";
+                this.image.src = "./img/life-stages/6-lifes.png";
+                this.image.alt = "Hanging Deadpool with 6 lives";
                 console.log("6 lives left")
                 break;
 
             case 5:
-                livesImg.src = "./img/life-stages/5-lifes.png";
-                livesImg.alt = "Hanging Deadpool with 5 lives";
+                this.image.src = "./img/life-stages/5-lifes.png";
+                this.image.alt = "Hanging Deadpool with 5 lives";
                 console.log("5 lives left")
                 break;
 
             case 4:
-                livesImg.src = "./img/life-stages/4-lifes.png";
-                livesImg.alt = "Hanging Deadpool with 4 lives";
+                this.image.src = "./img/life-stages/4-lifes.png";
+                this.image.alt = "Hanging Deadpool with 4 lives";
                 console.log("4 lives left")
                 break;
 
             case 3:
-                livesImg.src = "./img/life-stages/3-lifes.png";
-                livesImg.alt = "Hanging Deadpool with 3 lives";
+                this.image.src = "./img/life-stages/3-lifes.png";
+                this.image.alt = "Hanging Deadpool with 3 lives";
                 console.log("3 lives left")
                 break;
 
             case 2:
-                livesImg.src = "./img/life-stages/2-lifes.png";
-                livesImg.alt = "Hanging Deadpool with 2 lives";
+                this.image.src = "./img/life-stages/2-lifes.png";
+                this.image.alt = "Hanging Deadpool with 2 lives";
                 console.log("2 lives left")
                 break;
 
             case 1:
-                livesImg.src = "./img/life-stages/1-life.png";
-                livesImg.alt = "Hanging Deadpool with 1 life";
+                this.image.src = "./img/life-stages/1-life.png";
+                this.image.alt = "Hanging Deadpool with 1 life";
                 console.log("1 life left")
                 break;
         }
 
-        imgDiv.appendChild(livesImg);
-        this.image = livesImg;
         
     } 
 
@@ -163,6 +168,22 @@ class Game {
             div.classList.add("checked"); // marca la letra como procesada para evitar más reducciones
         } 
 
+        //checking if all the letter are visible
+        const allRevealed = Array.from(wordLetters).every(
+            (currentLetter) => currentLetter.style.visibility === "visible" 
+        ); //this returns a boolean!
+    
+        if (allRevealed) {
+            this.counter += 1;
+            console.log(`Palabra completada. Contador: ${this.counter}`);
+    
+            if (this.counter >= 3) {
+                this.endGame("win");
+            } else {
+                this.newWord();
+            }
+        }
+
     }
 
     updateLives() {
@@ -173,9 +194,42 @@ class Game {
 
         if (this.life <= 0) {
             console.log("¡Game Over!");
-           // this.endGame();
+            clearInterval(this.intervalId);
+            this.endGame("lose");
         }
     }
+
+    endGame(condition){
+
+        //changing screens
+        this.mainScreen.style.display = "none";
+        this.endingScreen.style.display = "flex";
+        console.log("end Screen is here")
+
+        this.endingPicture.style.maxWidth = "50vw"
+
+        //setting the different screens depending on win or lose
+
+        if (condition === "lose"){
+
+            this.endingPicture.src = "img/endingSCRimg/sadDoggo.jpg";
+            this.endingPicture.alt = "Dogpool is sad";
+
+            
+            this.endingTitle.innerText = "You lost";
+            this.endingSubtitle.innerText = "and now Dogpool is sad"
+
+        } else if (condition === "win"){
+            this.endingPicture.src = "img/endingSCRimg/happyDoggo.jpeg";
+            this.endingPicture.alt = "Dogpool and Deadpool are happily reunited";
+
+            
+            this.endingTitle.innerText = "Congratulations!";
+            this.endingSubtitle.innerHTML = "You did great!<br>Dogpool and Deadpool are happily reunited!"
+        }
+        
+    }
+
 }
 
 class Player {
@@ -242,9 +296,5 @@ class Player {
     }
 
     
-
-}
-
-class Obstacle{
 
 }
