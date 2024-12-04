@@ -66,3 +66,5 @@ document.addEventListener("keyup", (event) => {
     }
     
 })
+
+//when the word if finished 

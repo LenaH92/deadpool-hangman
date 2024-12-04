@@ -29,16 +29,11 @@ class Game {
         let lifeText = document.getElementById("lifes");
         lifeText.innerText = `Lifes: ${this.life}`; 
 
-        const imgDiv = document.getElementById("hangmanImg"); //getting the div where  the img should be nested
+        //const imgDiv = document.getElementById("hangmanImg"); //getting the div where  the img should be nested
         
-        const fullLivesImg = document.createElement("img"); //nesting the img and 
-        fullLivesImg.src = "./img/life-stages/6-lifes.png";
-        fullLivesImg.alt = "Hanging Deadpool with 6 lives";
-        imgDiv.appendChild(fullLivesImg);
-        this.image = fullLivesImg;
+        this.getLivesImg(); //method to change the img depending on the number of lives
 
         this.getNewWord(); // strting a new word to find
-
         
         this.gameLoop(); // calling the method so the game actually can move
 
@@ -58,8 +53,8 @@ class Game {
             let letterP = document.createElement ("p");
             
             letterP.innerText = letter;
-            letterP.style.visibility = "hidden"; //how can I hide the letter and show the border?
-            letterP.classList.add(`${letter}`); //added a class of the type of letter it is so it's easier to  link  with the playing area
+            letterP.style.visibility = "hidden"; //hide the letter
+            
             letterP.style.paddingBottom = "3px"
             letterDiv.style.borderBottom = "solid 3px black";
 
@@ -73,8 +68,113 @@ class Game {
             this.currentFrame += 1;
 
             this.player.move();
+            this.didItCollide();
 
         }, 1000 /60) //interval set to 60fps
+    }
+
+    getLivesImg() {
+
+        const imgDiv = document.getElementById("hangmanImg"); //getting the div where  the img should be nested
+        console.log("getting the image")
+        const livesImg = document.createElement("img"); //nesting the img and
+
+        switch (this.life) {
+            case 6:
+                livesImg.src = "./img/life-stages/6-lifes.png";
+                livesImg.alt = "Hanging Deadpool with 6 lives";
+                console.log("6 lives left")
+                break;
+
+            case 5:
+                livesImg.src = "./img/life-stages/5-lifes.png";
+                livesImg.alt = "Hanging Deadpool with 5 lives";
+                console.log("5 lives left")
+                break;
+
+            case 4:
+                livesImg.src = "./img/life-stages/4-lifes.png";
+                livesImg.alt = "Hanging Deadpool with 4 lives";
+                console.log("4 lives left")
+                break;
+
+            case 3:
+                livesImg.src = "./img/life-stages/3-lifes.png";
+                livesImg.alt = "Hanging Deadpool with 3 lives";
+                console.log("3 lives left")
+                break;
+
+            case 2:
+                livesImg.src = "./img/life-stages/2-lifes.png";
+                livesImg.alt = "Hanging Deadpool with 2 lives";
+                console.log("2 lives left")
+                break;
+
+            case 1:
+                livesImg.src = "./img/life-stages/1-life.png";
+                livesImg.alt = "Hanging Deadpool with 1 life";
+                console.log("1 life left")
+                break;
+        }
+
+        imgDiv.appendChild(livesImg);
+        this.image = livesImg;
+        
+    } 
+
+    didItCollide(){
+        const allLetterDivs = document.querySelectorAll(".letterButton"); // Todas las letras
+        const playerRect = this.player.element.getBoundingClientRect(); // Jugador
+
+        allLetterDivs.forEach((currentDiv) => {
+            const divRect = currentDiv.getBoundingClientRect(); // Cada letra
+
+            // Verificar si los rectángulos del jugador y el div de la letra se solapan
+            if (
+                playerRect.left < divRect.right &&
+                playerRect.right > divRect.left &&
+                playerRect.top < divRect.bottom &&
+                playerRect.bottom > divRect.top
+            ) {
+                currentDiv.classList.add("selected"); //put grey the letter
+                const selectedLetter = currentDiv.innerText.trim(); // Letra tocada
+                console.log(selectedLetter);
+                this.checkLetter(selectedLetter, currentDiv); // Verificar si está en la palabra
+            }
+        });
+    }
+
+    checkLetter(letter, div){
+        const wordLetters = document.querySelectorAll("#misteriousWord p"); //select all the letters of the misterious word
+        let foundLetter = false;
+
+        wordLetters.forEach((currentLetter) => {
+            console.log(currentLetter);
+            if (currentLetter.innerHTML === letter) {
+                currentLetter.style.visibility = "visible";
+                foundLetter = true;
+                console.log("letter found!!");
+            } 
+        });
+
+         if (!foundLetter && !div.classList.contains("checked")) {
+            this.life -= 1;
+            this.updateLives();
+            div.classList.add("checked"); // marca la letra como procesada para evitar más reducciones
+        } 
+
+    }
+
+    updateLives() {
+        const lifeText = document.getElementById("lifes");
+        lifeText.innerText = `Lifes: ${this.life}`;
+
+        this.getLivesImg(); // Cambiar imagen del ahorcado según vidas restantes
+
+        if (this.life <= 0) {
+            console.log("¡Game Over!");
+           // this.endGame();
+        }
     }
 }
 
@@ -140,6 +240,8 @@ class Player {
         this.element.style.left = `${this.positionX}px`;
         this.element.style.top = `${this.positionY}px`;
     }
+
+    
 
 }
 
