@@ -99,37 +99,37 @@ class Game {
 
         switch (this.life) {
             case 6:
-                this.image.src = "./img/life-stages/6-lifes.png";
+                this.image.src = "img/life-stages/6-lifes.png";
                 this.image.alt = "Hanging Deadpool with 6 lives";
                 console.log("6 lives left")
                 break;
 
             case 5:
-                this.image.src = "./img/life-stages/5-lifes.png";
+                this.image.src = "img/life-stages/5-lifes.png";
                 this.image.alt = "Hanging Deadpool with 5 lives";
                 console.log("5 lives left")
                 break;
 
             case 4:
-                this.image.src = "./img/life-stages/4-lifes.png";
+                this.image.src = "img/life-stages/4-lifes.png";
                 this.image.alt = "Hanging Deadpool with 4 lives";
                 console.log("4 lives left")
                 break;
 
             case 3:
-                this.image.src = "./img/life-stages/3-lifes.png";
+                this.image.src = "img/life-stages/3-lifes.png";
                 this.image.alt = "Hanging Deadpool with 3 lives";
                 console.log("3 lives left")
                 break;
 
             case 2:
-                this.image.src = "./img/life-stages/2-lifes.png";
+                this.image.src = "img/life-stages/2-lifes.png";
                 this.image.alt = "Hanging Deadpool with 2 lives";
                 console.log("2 lives left")
                 break;
 
             case 1:
-                this.image.src = "./img/life-stages/1-life.png";
+                this.image.src = "img/life-stages/1-life.png";
                 this.image.alt = "Hanging Deadpool with 1 life";
                 console.log("1 life left")
                 break;
@@ -225,7 +225,7 @@ class Game {
 
         if (condition === "lose"){
 
-            this.endingPicture.src = "img/endingSCRimg/sadDoggo.jpg";
+            this.endingPicture.src = "img/endingSCRimg/sadDoggo.png";
             this.endingPicture.alt = "Dogpool is sad";
 
             
@@ -237,7 +237,7 @@ class Game {
             this.endingPicture.alt = "Dogpool and Deadpool are happily reunited";
 
             
-            this.endingTitle.innerText = "Congratulations!";
+            this.endingTitle.innerText = "Congrats!";
             this.endingSubtitle.innerHTML = "You did great!<br>Dogpool and Deadpool are happily reunited!"
         }
         
@@ -257,7 +257,7 @@ class Player {
         this.leftSide= document.getElementById("leftside");
 
         this.element = document.createElement("img"); //getting the img
-        this.element.src ="./img/doggoIcon.png";
+        this.element.src ="img/doggoIcon.png";
 
         // positioning 
         this.element.alt ="Player icon";
