@@ -31,7 +31,9 @@ startBTN.addEventListener("click", () => {
 // Start over a word
 
 const retryBTN = document.querySelector("#box button");
-retryBTN.addEventListener("click", () => game.getNewWord ())
+retryBTN.addEventListener("click", () => {
+    game.player.reposition();
+    game.getNewWord ()})
 
 // Moving the player
 
@@ -89,3 +91,20 @@ restartBTN.addEventListener("click", () => {
     endScreen.style.display = "none";
     startScreen.style.display = "flex";
 })
+
+
+// Changing buttons colors when clicked and hoovered on PENDING
+
+
+const gameBTNs = document.querySelectorAll("button");
+gameBTNs.forEach((currentButton) => {
+    currentButton.addEventListener("mousedown", () => {
+        currentButton.classList.add("clicked");
+    });
+    
+    // Volver al color original al soltar el botón
+    currentButton.addEventListener("mouseup", () => {
+        currentButton.classList.remove("clicked");
+    })
+})
+; 

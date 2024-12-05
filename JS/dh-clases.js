@@ -232,7 +232,7 @@ class Game {
             this.endingSubtitle.innerText = "and now Dogpool is sad"
 
         } else if (condition === "win"){
-            this.endingPicture.src = "img/endingSCRimg/happyDoggo.jpeg";
+            this.endingPicture.src = "img/endingSCRimg/happyDoggo (1) 2.png";
             this.endingPicture.alt = "Dogpool and Deadpool are happily reunited";
 
             
@@ -251,8 +251,7 @@ class Player {
         this.width = 60;
         this.height= 57;
         this.positionX = playinArea.offsetWidth - this.width - 30;
-        this.positionY = playinArea.clientHeight - this.height - 30;
-        console.log(playinArea)
+        this.positionY = playinArea.clientHeight - this.height -30;
         this.leftSide= document.getElementById("leftside");
 
         this.element = document.createElement("img"); //getting the img

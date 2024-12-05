@@ -33,7 +33,7 @@
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 50%;
+    top: 20%;
     left: 10%;
     justify-content: center; /* Centers item horizontally */
     align-items: center; /* Centers item vertically */ 
@@ -42,6 +42,7 @@
     color: #ceb5b2;
     border: solid 2px #ceb5b2;
     border-radius: 10px;
+    padding: 10px;
 }
 
 #toastContainer.show {
@@ -49,26 +50,31 @@
 }
 
 #closeBTN {
-    display: flex;
-    justify-content: flex-end;
+    align-self: flex-end;
     padding: 0.5rem;
+    color: whitesmoke;
 }
 #instructionsText{
     padding: 1rem;
+    font-family: 'After Disaster', sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.8;
 }
 /* hasta aqui el toast, ahora la pantalla de inicio general */
 
 #StartingScreen {
     display: flex;
     justify-content: flex-start;
-    background: radial-gradient(circle, #f3dedc, #9b6964);
+    background: radial-gradient(circle, #ffd9d6, #754d4a);
 }
 
-#image img{
-    max-height: 100vh;
+#image img,
+#endingPicture img{
+    height: 100vh;
 }
 
-#textAndBTNs {
+#textAndBTNs,
+#endingText {
     display: flex;
     flex-direction: column;
     justify-content: space-around; 
@@ -80,7 +86,7 @@
 #gameTitle,
 #endingTitle {
     font-size: 5rem;
-    color: #962333;
+    color: #7a1c28;
     -webkit-text-stroke: 2px #13171b;
     text-shadow: 
         4px 4px 0 #e50017,  /* Sombra hacia abajo-derecha */
@@ -102,14 +108,14 @@
     border: solid 3px #60262c;
     padding: 1rem;
     border-radius: 0.7rem;
-    background-color: #b48f8b;
+    background-color: #ffc8c0;
 }
 
 /* Main Game Screen */
 
 #mainGame{
     display: none;
-    background: radial-gradient(circle, #f3dedc, #ff6759);
+    background: radial-gradient(circle, #ffd9d6, #754d4a);
 }
 
 #misteriousWord {
@@ -127,6 +133,16 @@
     font-size: 0.7rem;
     display: flex;
     justify-content: space-evenly;
+}
+
+#counters{
+    font-size: 1rem;
+}
+
+#box button{
+    padding: 0 10px 0 10px;
+    border: solid #13171b 1px;
+    border-radius: 5px;
 }
 
 .letterButton {
@@ -158,31 +174,21 @@
     padding: 20px 40px 20px 40px;
 }
 
-/* just for now */
-#leftside{
-    border: solid red;
-} 
-#leftside img{
-    border: solid blue;
-}
-#counters{
-    border: solid greenyellow;
-}
-#lifes{
-    border: solid purple;
-}
-#counter{
-    border: solid orange;
-}
-#misteriousWord{
-    border: solid olivedrab;
-}
-/* quitar tambien el de playing area */
 
 /* Ending screen */
 #endingScreen {
     display: none;
-    background: radial-gradient(circle, #f3dedc, #ff6759);
+    background: radial-gradient(circle, #ffd9d6, #754d4a);
     justify-content: flex-start;
     height: 100vh;
+}
+
+/* changing button colors when clicked */
+button.clicked,
+#start-buttons button.clicked,
+#endingText button.clicked
+{
+    border: solid 3px #ffc8c0;
+    background-color: #60262c;
+    color: whitesmoke;
 }

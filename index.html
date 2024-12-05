@@ -6,11 +6,18 @@
     <title>Deadpool hangman</title>
     <link rel="stylesheet" href="styles/dh-styles.css" /> <!-- stylesheet -->
     <link href="https://fonts.cdnfonts.com/css/rogue-hero" rel="stylesheet"> <!-- font -->
+    <link href="https://fonts.cdnfonts.com/css/noticia" rel="stylesheet"> <!-- font -->
+    <link href="https://fonts.cdnfonts.com/css/after-disaster" rel="stylesheet">
+                
 </head>
 <body>
     <div id="toastContainer">
         <h6 id="closeBTN">X</h6>
-        <p id="instructionsText">The instructions would be here</p>
+        <p id="instructionsText">DEADPOOL HAS BEEN CAPTURED!<br>
+                Help Dogpool figure out 3 words to save him.<br>
+                You can move Dogpool's icon with the  A  S  W  D keys or the arrow keys.<br>
+                You have 6 lives with each word. With each life less, Deadpool will lose a body part, but don't worry, Deadpool will grow back!<br>
+            TIP: If you get stuck on one you can refresh to another with the "Try Again" button!</p>
     </div>
     
     <div id = "StartingScreen">
@@ -31,11 +38,11 @@
         <div id="leftside"> 
             <div id="hangmanImg"></div>
             <div id="box">
-                <button> Try again </button>
                 <div id="counters">
                     <p id="lifes">Lifes: </p>
                     <p id="counter">Counter: </p>
                 </div>
+                <button> Try again </button>
             </div>
             <div id="misteriousWord"></div>
         </div>
