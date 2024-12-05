@@ -271,7 +271,7 @@ class Player {
         // moving
         this.directionX = 0
         this.directionY = 0
-        this.speed = 5
+        this.speed = 4
     }
 
     updatePosition(){
