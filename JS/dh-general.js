@@ -67,4 +67,25 @@ document.addEventListener("keyup", (event) => {
     
 })
 
-//when the word if finished 
+//Restaring to the first page
+
+const restartBTN = document.getElementById("restartBTN");
+restartBTN.addEventListener("click", () => {
+
+    const playinDIVS = document.querySelectorAll("#playinArea div");
+    playinDIVS.forEach((currentDiv) => {
+        if (currentDiv.classList.contains("checked")) {
+            currentDiv.classList.remove("checked");
+        }
+    });
+
+    game.player.element.remove();
+    game.image.remove();
+    game.endingPicture.remove();
+
+
+    const startScreen = document.getElementById("StartingScreen");
+    const endScreen = document.getElementById("endingScreen");
+    endScreen.style.display = "none";
+    startScreen.style.display = "flex";
+})

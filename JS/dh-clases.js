@@ -31,7 +31,6 @@ class Game {
         this.mainScreen.style.display = "flex";
 
         this.mainScreen.style.width = this.width;
-        //this.playinArea.style.width = this.playinAreaWidth;
         this.mainScreen.style.height = this.height;
         console.log("starting new game")
 
@@ -188,7 +187,6 @@ class Game {
             this.counter += 1;
             let counterText = document.getElementById("counter");
             counterText.innerHTML =`counter: ${this.counter}`; //should I keep thishere?
-            console.log(`Palabra completada. Contador: ${this.counter}`);
             if (this.counter >= 3) {
                 this.endGame("win");
             }
@@ -220,6 +218,7 @@ class Game {
         console.log("end Screen is here")
 
         this.endingPicture.style.maxWidth = "50vw"
+        
 
         //setting the different screens depending on win or lose
 

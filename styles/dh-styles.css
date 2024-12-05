@@ -89,13 +89,15 @@
         -4px -4px 0 #e50017;
 }
 
-#start-buttons {
+#start-buttons,
+#endingText {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 }
-#start-buttons button{
+#start-buttons button,
+#endingText button {
     margin: 1rem;
     border: solid 3px #60262c;
     padding: 1rem;
