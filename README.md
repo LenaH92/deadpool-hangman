@@ -10,7 +10,7 @@
 > TIP: If you get stuck on one you can refresh to another with the "Try Again" button!
 
 Deadpool Hangman takes the beloved game of "hangman" and gives it a cheeky, Deadpool-inspired makeover. In this version, players navigate Dogpool's icon around the game board using either the arrow keys or WASD controls to select letters and guess the hidden word. Get all the letters right, and it's a win! Rack up three consecutive victories to complete the game and bask in your triumph.
------------------
+
 ## Main Functionalities
 - Players guide Dogpool using keyboard controls (W, A, S, D or arrow keys).
 - Players have to guess and select all the letters of a word.
