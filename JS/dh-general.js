@@ -15,6 +15,21 @@ const closeToastBTN = document.getElementById("closeBTN");
 
 closeToastBTN.addEventListener("click", () => closeToast()); //function in methods.js
 
+//THanks toast
+
+const thanksBTN = document.getElementById("thanks");
+
+thanksBTN.addEventListener("click", () => {
+    console.log("toast called!");
+    showThanksToast(); //function in methods.js
+})
+
+//Closing toast
+
+const closeThanksToastBTN = document.getElementById("thanksCloseBTN");
+
+closeThanksToastBTN.addEventListener("click", () => closeThanksToast()); //function in methods.js
+
 //stating game so it goes to the whole scope
 
 let game;
@@ -102,9 +117,8 @@ gameBTNs.forEach((currentButton) => {
         currentButton.classList.add("clicked");
     });
     
-    // Volver al color original al soltar el botón
     currentButton.addEventListener("mouseup", () => {
         currentButton.classList.remove("clicked");
     })
-})
-; 
+});
+

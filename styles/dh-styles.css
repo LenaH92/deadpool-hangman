@@ -28,7 +28,8 @@
 
 /* startScreen */
 
-#toastContainer {
+#toastContainer,
+#thanksToastContainer {
     visibility: hidden;
     display: flex;
     flex-direction: column;
@@ -45,22 +46,26 @@
     padding: 10px;
 }
 
-#toastContainer.show {
+#toastContainer.show,
+#thanksToastContainer.show {
     visibility: visible;
 }
 
-#closeBTN {
+#closeBTN,
+#thanksCloseBTN {
     align-self: flex-end;
     padding: 0.5rem;
-    color: whitesmoke;
+    color: #88a2bc;
 }
-#instructionsText{
+#instructionsText,
+#thanksText{
     padding: 1rem;
-    font-family: 'After Disaster', sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 1.5rem;
+    color: whitesmoke;
     line-height: 1.8;
 }
-/* hasta aqui el toast, ahora la pantalla de inicio general */
+/* hasta aqui los toasts, ahora la pantalla de inicio general */
 
 #StartingScreen {
     display: flex;
