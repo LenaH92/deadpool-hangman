@@ -54,9 +54,9 @@ class Game
     gameLoop()
     getLivesImg()
     didItCollide()
-    checkLetter(letter, div)
+    checkLetter()
     updateLives()
-    endGame(condition)
+    endGame()
 
 class Player
 -----
